@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Exercises.MainPage">
-
     <toolkit:MediaElement x:Name="mediaElement"
-                      ShouldAutoPlay="True"
+                      HeightRequest="500"
+                      WidthRequest="300"
                       ShouldShowPlaybackControls="True"
-                      Source="embed://Videos//abs.mp4"/>
+                      Source="embed://Videos//Vid_01.mp4"/>
 
 </ContentPage>
