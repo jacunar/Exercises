@@ -2,11 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Exercises.MainPage">
-    <toolkit:MediaElement x:Name="mediaElement"
-                      HeightRequest="500"
-                      WidthRequest="300"
-                      ShouldShowPlaybackControls="True"
-                      Source="embed://Videos//Vid_01.mp4"/>
+             Unloaded="ContentPage_Unloaded"
+             x:Class="Exercises.MainPage"
+             Title="Play Video">
+    <Grid RowDefinitions="*, Auto">
+        <toolkit:MediaElement x:Name="video" 
+                              ShouldAutoPlay="True"
+                              ShouldKeepScreenOn="True"
+                              ShouldShowPlaybackControls="True"
+                              Source="embed://abs.mp4" />
+
+        <!--<Button Grid.Row="1" 
+                Text="Show Video Library"                
+                Margin="10"
+                HorizontalOptions="Center"
+                Clicked="OnShowVideoLibraryClicked" />-->
+    </Grid>
 
 </ContentPage>
