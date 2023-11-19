@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercises.Pages.MessageListPage"
+             Title="Tasks">
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="End" Padding="0,0,25,0">
+            <AbsoluteLayout>
+                <Image Source="{Binding SelectedLanguage.FlagIcon}" WidthRequest="20" HeightRequest="20" AbsoluteLayout.LayoutBounds="0,0,20,20">
+                </Image>
+                <Picker x:Name="FlagPicker" 
+                        IsVisible="True" 
+                        ItemsSource="{Binding Flags}" 
+                        Title="Flag" 
+                        WidthRequest="20" 
+                        HeightRequest="20" 
+                        AbsoluteLayout.LayoutBounds="0,0,20,20"
+                        SelectedItem="{Binding SelectedLanguage}"
+                        ItemDisplayBinding="{Binding ShortName}"
+                        />
+            </AbsoluteLayout>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <!--<ContentPage.Resources>
+        <converters:MessageStatusToColorConverter x:Key="StatusToColor" />
+    </ContentPage.Resources>-->
+
+    <VerticalStackLayout>
+        <ScrollView>
+            <VerticalStackLayout>
+                <Border Margin="0,0,0,20">
+                    <SearchBar Placeholder="Search items..." 
+                               Text="{Binding SearchString, Mode=TwoWay}" />
+                </Border>
+                <CollectionView ItemsSource="{Binding MessageList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate><!--x:DataType="dto:MessageDto"-->
+                            <VerticalStackLayout>
+                                <Border Margin="20,5,20,0">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" />
+                                        <!--CommandParameter="{Binding .}" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MessageListViewModel}}, Path=GoToMessageCommand}"--> 
+                                    </Border.GestureRecognizers>
+                                    <Border.Shadow>
+                                        <Shadow Brush="Gray"
+                                        Offset="30,30"
+                                        Radius="50"
+                                        Opacity="0.5" />
+                                    </Border.Shadow>
+                                    <Grid RowSpacing="1" ColumnSpacing="1" Padding="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Text="Number" Grid.Column="0" Grid.Row="0" />
+                                        <Label Text="{Binding Number}" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>
+                                        <Label Text="Object" Grid.Column="0" Grid.Row="1" />
+                                        <Label Text="{Binding ByObjectName}" Grid.Column="2" Grid.Row="1" HorizontalOptions="End"/>
+                                        <Label Text="Deadline" Grid.Column="0" Grid.Row="2" />
+                                        <Label Text="{Binding Deadline}" Grid.Column="2" Grid.Row="2" HorizontalOptions="End"/>
+                                        <Label Text="Condition" Grid.Column="0" Grid.Row="3" />
+                                        <Label Text="{Binding ConditionName}" Grid.Column="2" Grid.Row="2" HorizontalOptions="End"/>
+                                        <Label Text="Status" Grid.Column="0" Grid.Row="4" />
+                                        <Border Grid.Column="1" 
+                                                Grid.Row="4" 
+                                                BackgroundColor="{Binding Status,Converter={StaticResource StatusToColor}}" 
+                                                Padding="10,2,10,2"
+                                                Stroke="#C49B33"
+                                                StrokeThickness="0"
+                                                StrokeShape="RoundRectangle 10,10,10,10"
+                                                HorizontalOptions="End">
+                                            <Label Text="{Binding Status}" 
+                                                   Grid.Column="2"
+                                                   Grid.Row="3"
+                                                   HorizontalOptions="End"
+                                                   TextColor="White"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <Border Stroke="LightGray" StrokeShape="Rectangle" 
+                                        StrokeThickness="1" Margin="20,10,20,10" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                                <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                                <Label Text="Try a broader filter?"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand" IsVisible="{Binding NoMessages}">
+                    <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Try a broader filter?"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <ActivityIndicator IsRunning="{Binding IsLoading}" />
+    </VerticalStackLayout>
+</ContentPage>

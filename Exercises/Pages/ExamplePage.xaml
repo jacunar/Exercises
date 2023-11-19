@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Exercises.Pages.ExamplePage"
+             Title="ExamplePage">
+    <VerticalStackLayout>
+        <ScrollView>
+            <VerticalStackLayout>
+                <Border Margin="0,0,0,20">
+                    <SearchBar Placeholder="Search items..." Text="SearchString" />
+                </Border>
+                <CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <Border Margin="20,5,20,0">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" />
+                                    </Border.GestureRecognizers>
+                                    <Border.Shadow>
+                                        <Shadow Brush="Gray"
+                                        Offset="30,30"
+                                        Radius="50"
+                                        Opacity="0.5" />
+                                    </Border.Shadow>
+                                    <Grid RowSpacing="1" ColumnSpacing="1" Padding="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Text="Number" Grid.Column="0" Grid.Row="0" />
+                                        <Label Text="Number" Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>
+                                        <Label Text="Object" Grid.Column="0" Grid.Row="1" />
+                                        <Label Text="ByObjectName" Grid.Column="2" Grid.Row="1" HorizontalOptions="End"/>
+                                        <Label Text="Deadline" Grid.Column="0" Grid.Row="2" />
+                                        <Label Text="Deadline" Grid.Column="2" Grid.Row="2" HorizontalOptions="End"/>
+                                        <Label Text="Condition" Grid.Column="0" Grid.Row="3" />
+                                        <Label Text="ConditionName" Grid.Column="2" Grid.Row="2" HorizontalOptions="End"/>
+                                        <Label Text="Status" Grid.Column="0" Grid.Row="4" />
+                                        <Border Grid.Column="1" 
+                                                Grid.Row="4" 
+                                                BackgroundColor="Black" 
+                                                Padding="10,2,10,2"
+                                                Stroke="#C49B33"
+                                                StrokeThickness="0"
+                                                StrokeShape="RoundRectangle 10,10,10,10"
+                                                HorizontalOptions="End">
+                                            <Label Text="Status" 
+                                                   Grid.Column="2"
+                                                   Grid.Row="3"
+                                                   HorizontalOptions="End"
+                                                   TextColor="White"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <Border Stroke="LightGray" StrokeShape="Rectangle" StrokeThickness="1" Margin="20,10,20,10" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <ActivityIndicator IsRunning="{Binding IsLoading}" />
+    </VerticalStackLayout>
+</ContentPage>
